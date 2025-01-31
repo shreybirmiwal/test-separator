@@ -58,31 +58,87 @@ const App = () => {
   };
 
   return (
-    <div className="p-6 max-w-lg mx-auto">
-      <label>PDF: Version A upload</label>
-      <input type="file" accept="application/pdf" onChange={(e) => handleFileChange(e, setVersionA)} />
+    <div className="w-full  p-10">
+      <div className="p-6 max-w-3xl mx-auto bg-gray-100 shadow-md rounded-lg">
+        <h2 className="text-2xl font-bold text-center mb-4">Test Creator</h2>
 
-      <label>PDF: Version B upload</label>
-      <input type="file" accept="application/pdf" onChange={(e) => handleFileChange(e, setVersionB)} />
-
-      <label># of Teachers</label>
-      <input type="number" min="1" onChange={(e) => setNumTeachers(Number(e.target.value))} />
-
-      {Array.from({ length: numTeachers }).map((_, i) => (
-        <div key={i} className="p-2 border rounded mt-2">
-          <label>Teacher {i + 1} Name</label>
-          <input type="text" onChange={(e) => handleTeacherChange(i, "name", e.target.value)} />
-
-          <label># of Version A tests</label>
-          <input type="number" min="0" onChange={(e) => handleTeacherChange(i, "versionAAmount", Number(e.target.value))} />
-
-          <label># of Version B tests</label>
-          <input type="number" min="0" onChange={(e) => handleTeacherChange(i, "versionBAmount", Number(e.target.value))} />
+        <div className="bg-orange-300 p-2 rounded-md">
+          <p className="mt-1">
+            This app leaves a 'SEPERATOR' page and makes 1 big pdf that can be printed easily at print center and sorted quickly
+          </p>
+          <p className="mb-1">
+            -Shrey
+          </p >
         </div>
-      ))}
 
-      <div className="mt-4 p-2 bg-blue-500 text-white text-center cursor-pointer" onClick={generatePDF}>Generate PDF</div>
-    </div>
+        <div className="space-y-4 mt-5">
+          <div>
+            <label className="block font-medium">Upload Version A</label>
+            <input
+              type="file"
+              accept="application/pdf"
+              onChange={(e) => handleFileChange(e, setVersionA)}
+              className="w-full border rounded p-2"
+            />
+          </div>
+
+          <div>
+            <label className="block font-medium">Upload Version B</label>
+            <input
+              type="file"
+              accept="application/pdf"
+              onChange={(e) => handleFileChange(e, setVersionB)}
+              className="w-full border rounded p-2"
+            />
+          </div>
+
+          <div>
+            <label className="block font-medium">Number of Teachers</label>
+            <input
+              type="number"
+              min="1"
+              onChange={(e) => setNumTeachers(Number(e.target.value))}
+              className="w-full border rounded p-2"
+            />
+          </div>
+
+          {Array.from({ length: numTeachers }).map((_, i) => (
+            <div key={i} className="p-4 border rounded mt-2 bg-white">
+              <h3 className="font-semibold mb-2">Teacher {i + 1}</h3>
+              <label className="block">Name</label>
+              <input
+                type="text"
+                onChange={(e) => handleTeacherChange(i, "name", e.target.value)}
+                className="w-full border rounded p-2 mb-2"
+              />
+
+              <label className="block"># of Version A Tests</label>
+              <input
+                type="number"
+                min="0"
+                onChange={(e) => handleTeacherChange(i, "versionAAmount", Number(e.target.value))}
+                className="w-full border rounded p-2 mb-2"
+              />
+
+              <label className="block"># of Version B Tests</label>
+              <input
+                type="number"
+                min="0"
+                onChange={(e) => handleTeacherChange(i, "versionBAmount", Number(e.target.value))}
+                className="w-full border rounded p-2"
+              />
+            </div>
+          ))}
+
+          <button
+            onClick={generatePDF}
+            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+          >
+            Generate PDF
+          </button>
+        </div>
+      </div></div>
+
   );
 };
 
